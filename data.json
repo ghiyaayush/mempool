@@ -1,0 +1,57 @@
+{
+  "lastUpdated": null,
+  "current": {
+    "fed_rate": { "value": 4.375, "source": "manual", "updated": null },
+    "treasury_10y": { "value": 4.17, "source": "api", "updated": null },
+    "treasury_2y": { "value": 3.86, "source": "api", "updated": null },
+    "treasury_30y": { "value": 4.82, "source": "api", "updated": null },
+    "dxy": { "value": 98.87, "source": "api", "updated": null },
+    "vix": { "value": 16.97, "source": "api", "updated": null },
+    "cpi": { "value": 2.7, "source": "manual", "updated": null },
+    "core_cpi": { "value": 2.6, "source": "manual", "updated": null },
+    "core_pce": { "value": 2.6, "source": "manual", "updated": null },
+    "ppi": { "value": 3.3, "source": "manual", "updated": null },
+    "unemployment": { "value": 4.6, "source": "manual", "updated": null },
+    "ism_pmi": { "value": 47.9, "source": "manual", "updated": null },
+    "ism_services": { "value": 54.1, "source": "manual", "updated": null },
+    "gdp_growth": { "value": 2.8, "source": "manual", "updated": null },
+    "retail_sales": { "value": 0.6, "source": "manual", "updated": null },
+    "housing_starts": { "value": 1.42, "source": "manual", "updated": null },
+    "debt_to_gdp": { "value": 123, "source": "manual", "updated": null },
+    "deficit_gdp": { "value": 6.4, "source": "manual", "updated": null },
+    "m2_growth": { "value": 3.2, "source": "manual", "updated": null },
+    "consumer_confidence": { "value": 104.7, "source": "manual", "updated": null }
+  },
+  "predictions": {
+    "recession_2026": { "value": 22, "source": "api", "updated": null },
+    "fed_hike_2026": { "value": 12, "source": "api", "updated": null },
+    "fed_cut_50bp": { "value": 90, "source": "api", "updated": null },
+    "tariffs_upheld": { "value": 30, "source": "api", "updated": null },
+    "bank_failure_q1": { "value": 27, "source": "api", "updated": null },
+    "gold_5k_first": { "value": 78, "source": "api", "updated": null },
+    "powell_fired": { "value": 8, "source": "api", "updated": null },
+    "inflation_above_3": { "value": 35, "source": "api", "updated": null }
+  },
+  "calendar": [
+    { "date": "Jan 16", "event": "Retail Sales", "time": "7:00 PM", "impact": "high", "prev": "0.7%" },
+    { "date": "Jan 16", "event": "Empire State Mfg", "time": "7:00 PM", "impact": "med", "prev": "-4.7" },
+    { "date": "Jan 17", "event": "Housing Starts", "time": "7:00 PM", "impact": "med", "prev": "1.29M" },
+    { "date": "Jan 17", "event": "Industrial Production", "time": "7:45 PM", "impact": "med", "prev": "-0.1%" },
+    { "date": "Jan 22", "event": "GDP (Q3 Third)", "time": "7:00 PM", "impact": "high", "prev": "2.8%" },
+    { "date": "Jan 29", "event": "FOMC Decision", "time": "12:30 AM", "impact": "critical", "prev": "3.50-3.75%" },
+    { "date": "Jan 29", "event": "Powell Press Conf", "time": "1:00 AM", "impact": "critical", "prev": "-" },
+    { "date": "Jan 29", "event": "PCE Price Index", "time": "7:00 PM", "impact": "high", "prev": "2.4%" },
+    { "date": "Jan 29", "event": "Personal Spending", "time": "7:00 PM", "impact": "high", "prev": "0.4%" },
+    { "date": "Jan 30", "event": "Chicago PMI", "time": "8:15 PM", "impact": "med", "prev": "36.9" },
+    { "date": "Feb 7", "event": "Jobs Report (Jan)", "time": "7:00 PM", "impact": "critical", "prev": "256K" },
+    { "date": "Feb 11", "event": "CPI (Jan)", "time": "7:00 PM", "impact": "critical", "prev": "2.7%" },
+    { "date": "Mar 18", "event": "FOMC Decision", "time": "12:30 AM", "impact": "critical", "prev": "-" }
+  ],
+  "dalio": {
+    "debtCycle": { "debtToGdp": 123, "debtServiceRatio": 14.2, "creditGrowth": 3.8, "phase": "Late Cycle" },
+    "monetaryPolicy": { "realRates": 0.9, "yieldCurve": 0.31, "qeQt": "QT", "phase": "Tightening" },
+    "productivity": { "laborProductivity": 1.8, "capitalInvestment": 2.1, "innovation": "AI Boom", "phase": "Rising" },
+    "wealth": { "wealthGap": "Wide", "populism": "Rising", "socialConflict": "Moderate", "phase": "Late Stage" }
+  },
+  "manualOverrides": {}
+}

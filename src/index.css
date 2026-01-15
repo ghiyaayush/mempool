@@ -1,0 +1,63 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #0D1117;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.editable:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.edit-input {
+  background: #21262D;
+  border: 1px solid #58A6FF;
+  border-radius: 4px;
+  color: #E6EDF3;
+  padding: 4px 8px;
+  font-size: 14px;
+  width: 80px;
+  font-family: monospace;
+}
+
+.refresh-btn {
+  background: transparent;
+  border: 1px solid #30363D;
+  border-radius: 6px;
+  padding: 4px 8px;
+  color: #8B949E;
+  font-size: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.refresh-btn:hover {
+  border-color: #58A6FF;
+  color: #58A6FF;
+}
+
+.refresh-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinning {
+  animation: spin 1s linear infinite;
+  display: inline-block;
+}
