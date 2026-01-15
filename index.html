@@ -90,9 +90,9 @@
       ];
 
       const cryptoData = {
-        btc: { price: 98450, change24h: 2.4, change7d: 8.7, etfAum: 125.6, etfFlow: 420, dominance: 57.2 },
-        eth: { price: 3320, change24h: 1.8, change7d: 5.2, etfAum: 12.4, etfFlow: 85, ethBtcRatio: 0.0337 },
-        sol: { price: 198, change24h: 3.1, change7d: 12.4, marketCap: 92.5, etfFiling: 'Pending' }
+        btc: { price: 98450, change24h: 2.4, change7d: 8.7, etfAum: 125.6, etfFlow: 840.6, dominance: 57.2 },
+        eth: { price: 3320, change24h: 1.8, change7d: 5.2, etfAum: 12.4, etfFlow: 175.1, ethBtcRatio: 0.0337 },
+        sol: { price: 198, change24h: 3.1, change7d: 12.4, marketCap: 92.5, etfFlow: 23.6, etfFiling: 'Approved' }
       };
 
       const dalioIndicators = {
@@ -587,25 +587,28 @@
               <MetricCard label="7D CHANGE" value={cryptoData.sol.change7d} unit="%" color={cryptoData.sol.change7d >= 0 ? colors.green : colors.red} small />
               <MetricCard label="MCAP" value={cryptoData.sol.marketCap} unit="B" small />
             </div>
-            <div style={{
-              background: colors.bg,
-              borderRadius: '6px',
-              padding: '10px',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center'
-            }}>
-              <span style={{ fontSize: '10px', color: colors.dim }}>ETF STATUS</span>
-              <span style={{
-                fontSize: '10px',
-                color: colors.yellow,
-                fontWeight: '600',
-                background: colors.yellow + '20',
-                padding: '2px 8px',
-                borderRadius: '4px'
+            <div style={{ display: 'flex', gap: '8px' }}>
+              <MetricCard label="ETF FLOW" value={cryptoData.sol.etfFlow} unit="M" color={cryptoData.sol.etfFlow >= 0 ? colors.green : colors.red} small subtitle="Daily" />
+              <div style={{
+                flex: 1,
+                background: colors.bg,
+                borderRadius: '6px',
+                padding: '10px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center'
               }}>
-                {cryptoData.sol.etfFiling}
-              </span>
+                <span style={{ fontSize: '10px', color: colors.dim }}>ETF STATUS</span>
+                <span style={{
+                  fontSize: '10px',
+                  color: colors.green,
+                  fontWeight: '600',
+                  marginTop: '4px'
+                }}>
+                  {cryptoData.sol.etfFiling}
+                </span>
+              </div>
             </div>
           </div>
           <div style={{ fontSize: '9px', color: colors.dim, marginTop: '12px', textAlign: 'center' }}>
