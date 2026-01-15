@@ -96,12 +96,22 @@
         wealth: { wealthGap: 'Wide', populism: 'Rising', socialConflict: 'Moderate', phase: 'Late Stage' }
       };
 
+      // Druckenmiller's key focus areas
+      const druckData = {
+        liquidity: { fedBalance: 6.8, rrp: 0.4, tga: 0.7, netLiquidity: 5.7, trend: 'Draining' },
+        fiscal: { deficit: 6.4, debtGdp: 123, interestGdp: 3.2, trajectory: 'Unsustainable' },
+        inflation: { cpiNow: 2.7, pceCore: 2.6, breakevens: 2.3, sticky: 3.8, risk: 'Moderate' },
+        growth: { gdpNow: 2.8, profits: -2.1, leading: 'Mixed', recession: '22%' },
+        positioning: { dollar: 'Neutral', bonds: 'Short Duration', equities: 'Selective', gold: 'Long' }
+      };
+
       const tabs = [
         { id: 'calendar', label: 'Calendar' },
         { id: 'predictions', label: 'Predictions' },
         { id: 'current', label: 'Current' },
         { id: 'policy', label: 'Policy' },
-        { id: 'dalio', label: 'Dalio' }
+        { id: 'dalio', label: 'Dalio' },
+        { id: 'druck', label: 'Druck' }
       ];
 
       const MetricCard = ({ label, value, unit = '', color = colors.text, subtitle = null, small = false }) => (
@@ -407,6 +417,80 @@
         </div>
       );
 
+      const DruckTab = () => (
+        <div>
+          <SectionHeader title="LIQUIDITY" />
+          <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
+            <MetricCard label="FED BAL" value={druckData.liquidity.fedBalance} unit="T" subtitle="Balance Sheet" />
+            <MetricCard label="RRP" value={druckData.liquidity.rrp} unit="T" subtitle="Reverse Repo" />
+            <MetricCard label="TGA" value={druckData.liquidity.tga} unit="T" subtitle="Treasury" />
+          </div>
+          <div style={{
+            background: colors.card,
+            border: `1px solid ${colors.red}40`,
+            borderRadius: '8px',
+            padding: '10px 14px',
+            marginBottom: '16px',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center'
+          }}>
+            <span style={{ fontSize: '10px', color: colors.dim }}>NET LIQUIDITY</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <span style={{ fontSize: '10px', color: colors.red, fontWeight: '600', background: colors.red + '20', padding: '2px 6px', borderRadius: '4px' }}>{druckData.liquidity.trend.toUpperCase()}</span>
+              <span style={{ fontSize: '16px', color: colors.red, fontWeight: '700', fontFamily: 'monospace' }}>${druckData.liquidity.netLiquidity}T</span>
+            </div>
+          </div>
+          <SectionHeader title="FISCAL DOOM LOOP" />
+          <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
+            <MetricCard label="DEFICIT" value={druckData.fiscal.deficit} unit="%" color={colors.red} subtitle="of GDP" />
+            <MetricCard label="DEBT" value={druckData.fiscal.debtGdp} unit="%" color={colors.red} subtitle="of GDP" />
+            <MetricCard label="INTEREST" value={druckData.fiscal.interestGdp} unit="%" color={colors.orange} subtitle="of GDP" />
+          </div>
+          <div style={{
+            background: colors.card,
+            border: `1px solid ${colors.red}40`,
+            borderRadius: '8px',
+            padding: '10px 14px',
+            marginBottom: '16px',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center'
+          }}>
+            <span style={{ fontSize: '10px', color: colors.dim }}>TRAJECTORY</span>
+            <span style={{ fontSize: '12px', color: colors.red, fontWeight: '700' }}>{druckData.fiscal.trajectory}</span>
+          </div>
+          <SectionHeader title="INFLATION WATCH" />
+          <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
+            <MetricCard label="CPI" value={druckData.inflation.cpiNow} unit="%" />
+            <MetricCard label="CORE PCE" value={druckData.inflation.pceCore} unit="%" subtitle="Fed Target" />
+            <MetricCard label="STICKY" value={druckData.inflation.sticky} unit="%" color={colors.orange} />
+          </div>
+          <div style={{
+            background: colors.card,
+            border: `1px solid ${colors.yellow}40`,
+            borderRadius: '8px',
+            padding: '10px 14px',
+            marginBottom: '16px',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center'
+          }}>
+            <span style={{ fontSize: '10px', color: colors.dim }}>BREAKEVENS (5Y)</span>
+            <span style={{ fontSize: '16px', color: colors.yellow, fontWeight: '700', fontFamily: 'monospace' }}>{druckData.inflation.breakevens}%</span>
+          </div>
+          <SectionHeader title="DRUCK POSITIONING" />
+          <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
+            <MetricCard label="DOLLAR" value={druckData.positioning.dollar} color={colors.dim} />
+            <MetricCard label="BONDS" value={druckData.positioning.bonds} color={colors.red} />
+          </div>
+          <div style={{ display: 'flex', gap: '8px' }}>
+            <MetricCard label="EQUITIES" value={druckData.positioning.equities} color={colors.yellow} />
+            <MetricCard label="GOLD" value={druckData.positioning.gold} color={colors.green} />
+          </div>
+        </div>
+      );
+
       const renderTab = () => {
         switch(activeTab) {
           case 'calendar': return <CalendarTab />;
@@ -414,6 +498,7 @@
           case 'current': return <CurrentTab />;
           case 'policy': return <PolicyTab />;
           case 'dalio': return <DalioTab />;
+          case 'druck': return <DruckTab />;
           default: return <CurrentTab />;
         }
       };
