@@ -291,196 +291,126 @@
 
       const PolicyTab = () => (
         <div>
-          <div style={{
-            background: `linear-gradient(135deg, ${colors.blue}20 0%, ${colors.purple}20 100%)`,
-            border: `1px solid ${colors.border}`,
-            borderRadius: '8px',
-            padding: '12px',
-            marginBottom: '16px'
-          }}>
-            <div style={{ fontSize: '11px', color: colors.blue, fontWeight: '700', marginBottom: '4px' }}>POLICY OVERVIEW</div>
-            <div style={{ fontSize: '10px', color: colors.dim }}>
-              Monetary: <span style={{ color: colors.yellow }}>Pause</span> |
-              Fiscal: <span style={{ color: colors.red }}>Deficit spending</span>
-            </div>
-          </div>
-          <SectionHeader title="MONETARY POLICY (Federal Reserve)" />
+          <SectionHeader title="MONETARY POLICY" />
           <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
-            <MetricCard label="FED FUNDS" value={currentData.fed_rate} unit="%" small />
-            <MetricCard label="REAL RATE" value={(currentData.fed_rate - currentData.cpi).toFixed(2)} unit="%" color={colors.green} small subtitle="Fed - CPI" />
+            <MetricCard label="FED FUNDS" value={currentData.fed_rate} unit="%" />
+            <MetricCard label="REAL RATE" value={(currentData.fed_rate - currentData.cpi).toFixed(2)} unit="%" color={colors.green} subtitle="Fed - CPI" />
           </div>
+          <div style={{ display: 'flex', gap: '8px', marginBottom: '16px' }}>
+            <MetricCard label="10Y YIELD" value={currentData.treasury_10y} unit="%" />
+            <MetricCard label="30Y YIELD" value={currentData.treasury_30y} unit="%" />
+          </div>
+          <SectionHeader title="FED STANCE" />
+          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '16px' }}>
+            {['QT Active', 'Data Dependent', 'No Hikes Expected', '2 Cuts Priced'].map(tag => (
+              <span key={tag} style={{
+                fontSize: '10px',
+                background: colors.card,
+                border: `1px solid ${colors.border}`,
+                color: colors.text,
+                padding: '6px 10px',
+                borderRadius: '6px'
+              }}>{tag}</span>
+            ))}
+          </div>
+          <SectionHeader title="FISCAL POLICY" />
           <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
-            <MetricCard label="10Y YIELD" value={currentData.treasury_10y} unit="%" small />
-            <MetricCard label="30Y YIELD" value={currentData.treasury_30y} unit="%" small />
+            <MetricCard label="DEBT/GDP" value={currentData.debt_to_gdp} unit="%" color={colors.red} subtitle="High" />
+            <MetricCard label="DEFICIT/GDP" value={currentData.deficit_gdp} unit="%" color={colors.red} subtitle="FY2025" />
           </div>
-          <div style={{
-            background: colors.card,
-            border: `1px solid ${colors.border}`,
-            borderRadius: '6px',
-            padding: '10px',
-            marginBottom: '16px'
-          }}>
-            <div style={{ fontSize: '10px', color: colors.dim, marginBottom: '6px' }}>FED STANCE</div>
-            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-              {['QT Active', 'Data Dependent', 'No Hikes Expected', '2 Cuts Priced 2026'].map(tag => (
-                <span key={tag} style={{
-                  fontSize: '9px',
-                  background: colors.border,
-                  color: colors.text,
-                  padding: '3px 8px',
-                  borderRadius: '4px'
-                }}>{tag}</span>
-              ))}
-            </div>
+          <div style={{ display: 'flex', gap: '8px', marginBottom: '16px' }}>
+            <MetricCard label="M2 GROWTH" value={currentData.m2_growth} unit="%" subtitle="YoY" />
+            <MetricCard label="CONSUMER CONF" value={currentData.consumer_confidence} subtitle="Index" />
           </div>
-          <SectionHeader title="FISCAL POLICY (Treasury / Congress)" />
-          <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
-            <MetricCard label="DEBT/GDP" value={currentData.debt_to_gdp} unit="%" color={colors.red} small subtitle="High" />
-            <MetricCard label="DEFICIT/GDP" value={currentData.deficit_gdp} unit="%" color={colors.red} small subtitle="FY2025" />
-          </div>
-          <div style={{
-            background: colors.card,
-            border: `1px solid ${colors.border}`,
-            borderRadius: '6px',
-            padding: '10px',
-            marginBottom: '16px'
-          }}>
-            <div style={{ fontSize: '10px', color: colors.dim, marginBottom: '6px' }}>FISCAL STATUS</div>
-            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-              {['Debt Ceiling Extended', 'Tax Cuts Extended', 'Tariff Revenue Up', 'Entitlements Growing'].map(tag => (
-                <span key={tag} style={{
-                  fontSize: '9px',
-                  background: colors.border,
-                  color: colors.text,
-                  padding: '3px 8px',
-                  borderRadius: '4px'
-                }}>{tag}</span>
-              ))}
-            </div>
-          </div>
-          <SectionHeader title="MONEY SUPPLY" />
-          <div style={{ display: 'flex', gap: '8px' }}>
-            <MetricCard label="M2 GROWTH" value={currentData.m2_growth} unit="%" small subtitle="YoY" />
-            <MetricCard label="CONSUMER CONF" value={currentData.consumer_confidence} small subtitle="Dec 2025" />
+          <SectionHeader title="FISCAL STATUS" />
+          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+            {['Debt Ceiling Extended', 'Tax Cuts Extended', 'Tariff Revenue Up', 'Entitlements Growing'].map(tag => (
+              <span key={tag} style={{
+                fontSize: '10px',
+                background: colors.card,
+                border: `1px solid ${colors.border}`,
+                color: colors.text,
+                padding: '6px 10px',
+                borderRadius: '6px'
+              }}>{tag}</span>
+            ))}
           </div>
         </div>
       );
 
       const DalioTab = () => (
         <div>
-          <div style={{
-            background: `linear-gradient(135deg, ${colors.orange}15 0%, ${colors.yellow}15 100%)`,
-            border: `1px solid ${colors.orange}40`,
-            borderRadius: '8px',
-            padding: '14px',
-            marginBottom: '16px'
-          }}>
-            <div style={{ fontSize: '12px', color: colors.orange, fontWeight: '700', marginBottom: '6px' }}>
-              RAY DALIO'S FRAMEWORK
-            </div>
-            <div style={{ fontSize: '10px', color: colors.dim, lineHeight: '1.5' }}>
-              Based on "How the Economic Machine Works" and "Principles for Navigating Big Debt Crises"
-            </div>
+          <SectionHeader title="DEBT CYCLE" />
+          <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
+            <MetricCard label="DEBT/GDP" value={dalioIndicators.debtCycle.debtToGdp} unit="%" color={colors.red} />
+            <MetricCard label="DEBT SERVICE" value={dalioIndicators.debtCycle.debtServiceRatio} unit="%" />
+            <MetricCard label="CREDIT GROWTH" value={dalioIndicators.debtCycle.creditGrowth} unit="%" />
           </div>
-
-          <SectionHeader title="1. DEBT CYCLE POSITION" />
           <div style={{
             background: colors.card,
-            border: `1px solid ${colors.border}`,
+            border: `1px solid ${colors.yellow}40`,
             borderRadius: '8px',
-            padding: '14px',
-            marginBottom: '12px'
+            padding: '10px 14px',
+            marginBottom: '16px',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center'
           }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
-              <span style={{ fontSize: '11px', color: colors.dim }}>Current Phase:</span>
-              <span style={{ fontSize: '11px', color: colors.yellow, fontWeight: '700' }}>{dalioIndicators.debtCycle.phase}</span>
-            </div>
-            <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
-              <MetricCard label="DEBT/GDP" value={dalioIndicators.debtCycle.debtToGdp} unit="%" color={colors.red} small />
-              <MetricCard label="DEBT SERVICE" value={dalioIndicators.debtCycle.debtServiceRatio} unit="%" small />
-            </div>
-            <div style={{ fontSize: '10px', color: colors.dim, marginTop: '8px', padding: '8px', background: colors.bg, borderRadius: '4px' }}>
-              <span style={{ color: colors.text }}>Long-term debt cycle</span> nearing late stage. Debt levels elevated but serviceable while rates low.
-            </div>
+            <span style={{ fontSize: '10px', color: colors.dim }}>CYCLE PHASE</span>
+            <span style={{ fontSize: '12px', color: colors.yellow, fontWeight: '700' }}>{dalioIndicators.debtCycle.phase}</span>
           </div>
-
-          <SectionHeader title="2. SHORT-TERM CYCLE (5-8 years)" />
+          <SectionHeader title="MONETARY CYCLE" />
+          <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
+            <MetricCard label="REAL RATE" value={dalioIndicators.monetaryPolicy.realRates} unit="%" color={colors.green} />
+            <MetricCard label="YIELD CURVE" value={dalioIndicators.monetaryPolicy.yieldCurve} unit="%" subtitle="10Y-2Y" />
+          </div>
           <div style={{
             background: colors.card,
-            border: `1px solid ${colors.border}`,
+            border: `1px solid ${colors.blue}40`,
             borderRadius: '8px',
-            padding: '14px',
-            marginBottom: '12px'
+            padding: '10px 14px',
+            marginBottom: '16px',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center'
           }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
-              <span style={{ fontSize: '11px', color: colors.dim }}>Monetary Stance:</span>
-              <span style={{ fontSize: '11px', color: colors.blue, fontWeight: '700' }}>{dalioIndicators.monetaryPolicy.phase}</span>
-            </div>
-            <div style={{ display: 'flex', gap: '8px' }}>
-              <MetricCard label="REAL RATE" value={dalioIndicators.monetaryPolicy.realRates} unit="%" color={colors.green} small subtitle="Positive = tight" />
-              <MetricCard label="YIELD CURVE" value={dalioIndicators.monetaryPolicy.yieldCurve} unit="%" small subtitle="10Y-2Y spread" />
-            </div>
-            <div style={{ fontSize: '10px', color: colors.dim, marginTop: '8px', padding: '8px', background: colors.bg, borderRadius: '4px' }}>
-              <span style={{ color: colors.text }}>Mid-cycle</span>: Fed on pause after rate cuts. Real rates positive = restrictive.
-            </div>
+            <span style={{ fontSize: '10px', color: colors.dim }}>STANCE</span>
+            <span style={{ fontSize: '12px', color: colors.blue, fontWeight: '700' }}>{dalioIndicators.monetaryPolicy.phase}</span>
           </div>
-
-          <SectionHeader title="3. PRODUCTIVITY GROWTH" />
+          <SectionHeader title="PRODUCTIVITY" />
+          <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
+            <MetricCard label="LABOR PROD" value={dalioIndicators.productivity.laborProductivity} unit="%" color={colors.green} />
+            <MetricCard label="CAP INVEST" value={dalioIndicators.productivity.capitalInvestment} unit="%" />
+          </div>
           <div style={{
             background: colors.card,
-            border: `1px solid ${colors.border}`,
+            border: `1px solid ${colors.green}40`,
             borderRadius: '8px',
-            padding: '14px',
-            marginBottom: '12px'
+            padding: '10px 14px',
+            marginBottom: '16px',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center'
           }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
-              <span style={{ fontSize: '11px', color: colors.dim }}>Trend:</span>
-              <span style={{ fontSize: '11px', color: colors.green, fontWeight: '700' }}>{dalioIndicators.productivity.phase}</span>
-            </div>
-            <div style={{ display: 'flex', gap: '8px' }}>
-              <MetricCard label="LABOR PROD" value={dalioIndicators.productivity.laborProductivity} unit="%" color={colors.green} small />
-              <MetricCard label="CAP INVEST" value={dalioIndicators.productivity.capitalInvestment} unit="%" small />
-            </div>
-            <div style={{ fontSize: '10px', color: colors.dim, marginTop: '8px', padding: '8px', background: colors.bg, borderRadius: '4px' }}>
-              <span style={{ color: colors.text }}>AI revolution</span> boosting productivity. Structural positive for US.
-            </div>
+            <span style={{ fontSize: '10px', color: colors.dim }}>TREND</span>
+            <span style={{ fontSize: '12px', color: colors.green, fontWeight: '700' }}>{dalioIndicators.productivity.phase}</span>
           </div>
-
-          <SectionHeader title="4. WEALTH GAP & POPULISM" />
+          <SectionHeader title="SOCIAL CYCLE" />
+          <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
+            <MetricCard label="WEALTH GAP" value={dalioIndicators.wealth.wealthGap} color={colors.red} />
+            <MetricCard label="POPULISM" value={dalioIndicators.wealth.populism} color={colors.orange} />
+          </div>
           <div style={{
             background: colors.card,
-            border: `1px solid ${colors.red}30`,
+            border: `1px solid ${colors.red}40`,
             borderRadius: '8px',
-            padding: '14px',
-            marginBottom: '12px'
+            padding: '10px 14px',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center'
           }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
-              <span style={{ fontSize: '11px', color: colors.dim }}>Social Cycle:</span>
-              <span style={{ fontSize: '11px', color: colors.red, fontWeight: '700' }}>{dalioIndicators.wealth.phase}</span>
-            </div>
-            <div style={{ display: 'flex', gap: '20px', fontSize: '11px' }}>
-              <div><span style={{ color: colors.dim }}>Wealth Gap:</span> <span style={{ color: colors.red }}>{dalioIndicators.wealth.wealthGap}</span></div>
-              <div><span style={{ color: colors.dim }}>Populism:</span> <span style={{ color: colors.orange }}>{dalioIndicators.wealth.populism}</span></div>
-            </div>
-            <div style={{ fontSize: '10px', color: colors.dim, marginTop: '8px', padding: '8px', background: colors.bg, borderRadius: '4px' }}>
-              <span style={{ color: colors.text }}>Internal conflict risk</span>: Wide wealth gaps historically lead to political instability.
-            </div>
-          </div>
-
-          <div style={{
-            background: colors.bg,
-            border: `1px solid ${colors.border}`,
-            borderRadius: '8px',
-            padding: '12px',
-            marginTop: '8px'
-          }}>
-            <div style={{ fontSize: '10px', color: colors.yellow, fontWeight: '700', marginBottom: '6px' }}>DALIO'S KEY RULES</div>
-            <div style={{ fontSize: '10px', color: colors.dim, lineHeight: '1.6' }}>
-              1. Don't have debt rise faster than income<br/>
-              2. Don't have income rise faster than productivity<br/>
-              3. Do all you can to raise productivity<br/>
-              <span style={{ color: colors.text }}>Currently: Rule 1 under stress, Rule 3 improving</span>
-            </div>
+            <span style={{ fontSize: '10px', color: colors.dim }}>PHASE</span>
+            <span style={{ fontSize: '12px', color: colors.red, fontWeight: '700' }}>{dalioIndicators.wealth.phase}</span>
           </div>
         </div>
       );
