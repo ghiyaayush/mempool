@@ -89,10 +89,11 @@
         { date: 'Mar 18', event: 'FOMC Decision', time: '12:30 AM', impact: 'critical', prev: '-' }
       ];
 
+      // ETF data from SoSoValue/Bloomberg - Jan 14, 2026
       const cryptoData = {
-        btc: { price: 98450, change24h: 2.4, change7d: 8.7, etfAum: 125.6, etfFlow: 840.6, dominance: 57.2 },
-        eth: { price: 3320, change24h: 1.8, change7d: 5.2, etfAum: 12.4, etfFlow: 175.1, ethBtcRatio: 0.0337 },
-        sol: { price: 198, change24h: 3.1, change7d: 12.4, marketCap: 92.5, etfFlow: 23.6, etfFiling: 'Approved' }
+        btc: { price: 97271, change24h: 3.4, change7d: 5.2, etfAum: 121.5, etfFlow: 753.7, dominance: 60.1 },
+        eth: { price: 3328, change24h: 6.6, change7d: 8.1, etfAum: 12.6, etfFlow: 130, ethBtcRatio: 0.0342 },
+        sol: { price: 185, change24h: 4.2, change7d: 9.8, marketCap: 89.5, etfFlow: 5.9, etfFiling: 'Approved' }
       };
 
       const dalioIndicators = {
@@ -612,7 +613,7 @@
             </div>
           </div>
           <div style={{ fontSize: '9px', color: colors.dim, marginTop: '12px', textAlign: 'center' }}>
-            Data from CoinGecko, ETF providers - Not financial advice
+            Data from SoSoValue, Farside Investors, Bloomberg - Not financial advice
           </div>
         </div>
       );
