@@ -89,6 +89,12 @@
         { date: 'Mar 18', event: 'FOMC Decision', time: '12:30 AM', impact: 'critical', prev: '-' }
       ];
 
+      const cryptoData = {
+        btc: { price: 98450, change24h: 2.4, change7d: 8.7, etfAum: 125.6, etfFlow: 420, dominance: 57.2 },
+        eth: { price: 3320, change24h: 1.8, change7d: 5.2, etfAum: 12.4, etfFlow: 85, ethBtcRatio: 0.0337 },
+        sol: { price: 198, change24h: 3.1, change7d: 12.4, marketCap: 92.5, etfFiling: 'Pending' }
+      };
+
       const dalioIndicators = {
         debtCycle: { debtToGdp: 123, debtServiceRatio: 14.2, creditGrowth: 3.8, phase: 'Late Cycle' },
         monetaryPolicy: { realRates: 0.9, yieldCurve: 0.31, qeQt: 'QT', phase: 'Tightening' },
@@ -100,6 +106,7 @@
         { id: 'calendar', label: 'Calendar' },
         { id: 'predictions', label: 'Predictions' },
         { id: 'current', label: 'Current' },
+        { id: 'crypto', label: 'Crypto' },
         { id: 'policy', label: 'Policy' },
         { id: 'dalio', label: 'Dalio' }
       ];
@@ -485,11 +492,134 @@
         </div>
       );
 
+      const CryptoTab = () => (
+        <div>
+          <div style={{
+            background: `linear-gradient(135deg, ${colors.orange}15 0%, ${colors.yellow}15 100%)`,
+            border: `1px solid ${colors.orange}40`,
+            borderRadius: '8px',
+            padding: '14px',
+            marginBottom: '16px'
+          }}>
+            <div style={{ fontSize: '12px', color: colors.orange, fontWeight: '700', marginBottom: '6px' }}>
+              CRYPTO ETF TRACKER
+            </div>
+            <div style={{ fontSize: '10px', color: colors.dim, lineHeight: '1.5' }}>
+              Spot ETF flows, prices, and market data
+            </div>
+          </div>
+          <SectionHeader title="BITCOIN (BTC)" />
+          <div style={{
+            background: colors.card,
+            border: `1px solid ${colors.orange}40`,
+            borderRadius: '8px',
+            padding: '14px',
+            marginBottom: '12px'
+          }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+              <span style={{ fontSize: '14px', color: colors.orange, fontWeight: '700' }}>BTC</span>
+              <div style={{ textAlign: 'right' }}>
+                <div style={{ fontSize: '18px', color: colors.text, fontWeight: '700', fontFamily: 'monospace' }}>
+                  ${cryptoData.btc.price.toLocaleString()}
+                </div>
+                <span style={{ fontSize: '11px', color: cryptoData.btc.change24h >= 0 ? colors.green : colors.red, fontWeight: '600' }}>
+                  {cryptoData.btc.change24h >= 0 ? '+' : ''}{cryptoData.btc.change24h}% (24h)
+                </span>
+              </div>
+            </div>
+            <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
+              <MetricCard label="7D CHANGE" value={cryptoData.btc.change7d} unit="%" color={cryptoData.btc.change7d >= 0 ? colors.green : colors.red} small />
+              <MetricCard label="DOMINANCE" value={cryptoData.btc.dominance} unit="%" small />
+            </div>
+            <div style={{ display: 'flex', gap: '8px' }}>
+              <MetricCard label="ETF AUM" value={cryptoData.btc.etfAum} unit="B" color={colors.green} small subtitle="Total" />
+              <MetricCard label="ETF FLOW" value={cryptoData.btc.etfFlow} unit="M" color={cryptoData.btc.etfFlow >= 0 ? colors.green : colors.red} small subtitle="Daily" />
+            </div>
+          </div>
+          <SectionHeader title="ETHEREUM (ETH)" />
+          <div style={{
+            background: colors.card,
+            border: `1px solid ${colors.purple}40`,
+            borderRadius: '8px',
+            padding: '14px',
+            marginBottom: '12px'
+          }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+              <span style={{ fontSize: '14px', color: colors.purple, fontWeight: '700' }}>ETH</span>
+              <div style={{ textAlign: 'right' }}>
+                <div style={{ fontSize: '18px', color: colors.text, fontWeight: '700', fontFamily: 'monospace' }}>
+                  ${cryptoData.eth.price.toLocaleString()}
+                </div>
+                <span style={{ fontSize: '11px', color: cryptoData.eth.change24h >= 0 ? colors.green : colors.red, fontWeight: '600' }}>
+                  {cryptoData.eth.change24h >= 0 ? '+' : ''}{cryptoData.eth.change24h}% (24h)
+                </span>
+              </div>
+            </div>
+            <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
+              <MetricCard label="7D CHANGE" value={cryptoData.eth.change7d} unit="%" color={cryptoData.eth.change7d >= 0 ? colors.green : colors.red} small />
+              <MetricCard label="ETH/BTC" value={cryptoData.eth.ethBtcRatio} unit="" small subtitle="Ratio" />
+            </div>
+            <div style={{ display: 'flex', gap: '8px' }}>
+              <MetricCard label="ETF AUM" value={cryptoData.eth.etfAum} unit="B" color={colors.green} small subtitle="Total" />
+              <MetricCard label="ETF FLOW" value={cryptoData.eth.etfFlow} unit="M" color={cryptoData.eth.etfFlow >= 0 ? colors.green : colors.red} small subtitle="Daily" />
+            </div>
+          </div>
+          <SectionHeader title="SOLANA (SOL)" />
+          <div style={{
+            background: colors.card,
+            border: `1px solid ${colors.blue}40`,
+            borderRadius: '8px',
+            padding: '14px',
+            marginBottom: '12px'
+          }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+              <span style={{ fontSize: '14px', color: colors.blue, fontWeight: '700' }}>SOL</span>
+              <div style={{ textAlign: 'right' }}>
+                <div style={{ fontSize: '18px', color: colors.text, fontWeight: '700', fontFamily: 'monospace' }}>
+                  ${cryptoData.sol.price.toLocaleString()}
+                </div>
+                <span style={{ fontSize: '11px', color: cryptoData.sol.change24h >= 0 ? colors.green : colors.red, fontWeight: '600' }}>
+                  {cryptoData.sol.change24h >= 0 ? '+' : ''}{cryptoData.sol.change24h}% (24h)
+                </span>
+              </div>
+            </div>
+            <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
+              <MetricCard label="7D CHANGE" value={cryptoData.sol.change7d} unit="%" color={cryptoData.sol.change7d >= 0 ? colors.green : colors.red} small />
+              <MetricCard label="MCAP" value={cryptoData.sol.marketCap} unit="B" small />
+            </div>
+            <div style={{
+              background: colors.bg,
+              borderRadius: '6px',
+              padding: '10px',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center'
+            }}>
+              <span style={{ fontSize: '10px', color: colors.dim }}>ETF STATUS</span>
+              <span style={{
+                fontSize: '10px',
+                color: colors.yellow,
+                fontWeight: '600',
+                background: colors.yellow + '20',
+                padding: '2px 8px',
+                borderRadius: '4px'
+              }}>
+                {cryptoData.sol.etfFiling}
+              </span>
+            </div>
+          </div>
+          <div style={{ fontSize: '9px', color: colors.dim, marginTop: '12px', textAlign: 'center' }}>
+            Data from CoinGecko, ETF providers - Not financial advice
+          </div>
+        </div>
+      );
+
       const renderTab = () => {
         switch(activeTab) {
           case 'calendar': return <CalendarTab />;
           case 'predictions': return <PredictionsTab />;
           case 'current': return <CurrentTab />;
+          case 'crypto': return <CryptoTab />;
           case 'policy': return <PolicyTab />;
           case 'dalio': return <DalioTab />;
           default: return <CurrentTab />;
