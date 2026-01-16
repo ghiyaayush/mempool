@@ -2,14 +2,15 @@ import { useState, useEffect } from 'react'
 import { colors } from './theme'
 import { fetchData, refreshData, updateValue } from './api'
 import type { DashboardData, TabId } from './types'
-import { CalendarTab, PredictionsTab, CurrentTab, PolicyTab, DalioTab } from './components/tabs'
+import { CalendarTab, PredictionsTab, CurrentTab, PolicyTab, DalioTab, LiquidityTab } from './components/tabs'
 
 const tabs: { id: TabId; label: string }[] = [
   { id: 'calendar', label: 'Calendar' },
   { id: 'predictions', label: 'Predictions' },
   { id: 'current', label: 'Current' },
   { id: 'policy', label: 'Policy' },
-  { id: 'dalio', label: 'Dalio' }
+  { id: 'dalio', label: 'Dalio' },
+  { id: 'liquidity', label: 'Liquidity' }
 ]
 
 export default function App() {
@@ -85,6 +86,8 @@ export default function App() {
         return <PolicyTab current={data.current} onEdit={handleEdit} />
       case 'dalio':
         return <DalioTab dalio={data.dalio} />
+      case 'liquidity':
+        return <LiquidityTab liquidity={data.liquidity} />
       default:
         return <CurrentTab current={data.current} onEdit={handleEdit} />
     }

@@ -96,6 +96,7 @@ app.get('/api/data', (req, res) => {
       predictions: {},
       calendar: data.calendar,
       dalio: data.dalio,
+      liquidity: data.liquidity,
       lastUpdated: data.lastUpdated
     }
 

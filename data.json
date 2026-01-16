@@ -53,5 +53,22 @@
     "productivity": { "laborProductivity": 1.8, "capitalInvestment": 2.1, "innovation": "AI Boom", "phase": "Rising" },
     "wealth": { "wealthGap": "Wide", "populism": "Rising", "socialConflict": "Moderate", "phase": "Late Stage" }
   },
+  "liquidity": {
+    "fedBalanceSheet": 6.85,
+    "tga": 722,
+    "rrp": 165,
+    "netLiquidity": 5.96,
+    "netLiquidity4wChange": 48,
+    "netLiquidity12wChange": -85,
+    "sofr": 4.31,
+    "repoStress": 12,
+    "crossCurrencyBasis": -15,
+    "move": 98,
+    "hySpread": 310,
+    "vix": 16.97,
+    "dxy": 98.87,
+    "liquidityRegime": "neutral",
+    "fundingStress": "low"
+  },
   "manualOverrides": {}
 }

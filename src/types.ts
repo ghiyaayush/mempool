@@ -67,12 +67,38 @@ export interface DalioIndicators {
   }
 }
 
+export interface LiquidityData {
+  // Net Liquidity Components
+  fedBalanceSheet: number      // Fed assets (trillions)
+  tga: number                  // Treasury General Account (billions)
+  rrp: number                  // Reverse Repo (billions)
+  netLiquidity: number         // Fed - TGA - RRP (trillions)
+  netLiquidity4wChange: number // 4-week change (billions)
+  netLiquidity12wChange: number // 12-week change (billions)
+
+  // Funding Markets
+  sofr: number                 // SOFR rate
+  repoStress: number           // Repo stress proxy
+  crossCurrencyBasis: number   // USD cross-currency basis (bps)
+  move: number                 // MOVE index (rates volatility)
+
+  // Risk Transmission
+  hySpread: number             // High Yield spread (bps)
+  vix: number                  // VIX
+  dxy: number                  // Dollar index
+
+  // Status indicators
+  liquidityRegime: 'expanding' | 'contracting' | 'neutral'
+  fundingStress: 'low' | 'elevated' | 'high'
+}
+
 export interface DashboardData {
   current: CurrentData
   predictions: Predictions
   calendar: CalendarEvent[]
   dalio: DalioIndicators
+  liquidity: LiquidityData
   lastUpdated: string | null
 }
 
-export type TabId = 'calendar' | 'predictions' | 'current' | 'policy' | 'dalio'
+export type TabId = 'calendar' | 'predictions' | 'current' | 'policy' | 'dalio' | 'liquidity'
